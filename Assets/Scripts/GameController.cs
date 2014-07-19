@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
 	public Color backgroundColor, colorOn, colorOff, backgroundSquare;
 	public float gameSize, spacing;
 	public GameObject gameBackground;
+	public GameObject piece;
 
 	private int level;
 	private bool[,] values;
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour {
 		GameObject gameBackground = GameObject.Find ("Game Background");
 
 		level = 1;
+
+		piece = GameObject.Find ("Piece");
 
 		values = new bool[1,1];
 		values [0, 0] = false;
