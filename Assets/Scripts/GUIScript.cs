@@ -50,4 +50,11 @@ public class GUIScript : MonoBehaviour {
 			}
 		}
 	}
+
+	public void UpdateSquare(int x, int y) {
+		if (gameController.getValues()[x,y])
+			squares [x, y].renderer.material.color = gameController.colorOn;
+		else
+			squares [x, y].renderer.material.color = gameController.colorOff;
+	}
 }
