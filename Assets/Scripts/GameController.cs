@@ -5,17 +5,17 @@ public class GameController : MonoBehaviour {
 
 	public Color backgroundColor, colorOn, colorOff, backgroundSquare;
 	public float gameSize, spacing;
-	public GameObject gameBackground;
-	public GameObject piece;
+	public GameObject gameBackground, piece;
+	public int startLevel;
 
-	private int level;
+	public int level;
 	private bool[,] values;
 
 	// Use this for initialization
 	void Start () {
 		GameObject gameBackground = GameObject.Find ("Game Background");
 
-		level = 1;
+		level = startLevel;	//DEBUG
 
 		piece = GameObject.Find ("Piece");
 
@@ -29,8 +29,13 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
+
+	public void buttonClick(int x, int y) {
+		//Perform Action
+		Debug.Log (x + ", " + y);
+		}
 
 	public int getLevel (){
 		return level;

@@ -8,11 +8,12 @@ public class GUIScript : MonoBehaviour {
 	private float deltaSize, size;
 	private Vector3 topLeft;
 	private GameObject piece;
-	public int startLevel; //DEBUG
+	private int startLevel; //DEBUG
 
 	// Use this for initialization
 	void Start () {
 		gameController = transform.parent.GetComponent<GameController>();
+		startLevel = gameController.startLevel;
 		size = gameController.gameSize;
 		topLeft = gameController.transform.position + new Vector3 (-size / 2, size / 2, 0);
 		Debug.Log (topLeft);
@@ -22,9 +23,7 @@ public class GUIScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			Debug.Log(Input.mousePosition);
-		}
+
 	}
 
 	void Setup (int level) {
