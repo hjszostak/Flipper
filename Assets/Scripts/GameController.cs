@@ -64,6 +64,9 @@ public class GameController : MonoBehaviour {
 			guiScript.UpdateSquare(x,y+1);
 		}
 
+		if (isComplete()) {
+			newLevel();
+		}
 	}
 
 	public int getLevel (){
@@ -72,5 +75,23 @@ public class GameController : MonoBehaviour {
 
 	public bool[,] getValues() {
 		return values;
+	}
+
+	//checks to see if the game is complete
+	private bool isComplete() {
+		for (int i = 0; i < level; i++) {
+			for (int j = 0; j < level; j++) {
+				if (!values[j,i])
+					return false;
+			}
+		}
+		return true;
+	}
+
+	//update variables and call changeboard
+	private void newLevel() {
+		level++;
+		values = new bool[level, level];
+		guiScript.ChangeBoard (level);
 	}
 }

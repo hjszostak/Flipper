@@ -8,18 +8,18 @@ public class GUIScript : MonoBehaviour {
 	private float deltaSize, size;
 	private Vector3 bottomLeft;
 	private GameObject piece;
-	private int startLevel; //DEBUG
+	private int level;
 
 	// Use this for initialization
 	void Start () {
 		//pull game data
 		gameController = transform.parent.GetComponent<GameController>();
-		startLevel = gameController.startLevel;
+		level = gameController.startLevel;
 		size = gameController.gameSize;
 		bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
 		piece = GameObject.Find ("Piece");
 
-		Setup(startLevel);
+		Setup(level);
 	}
 	
 	// Update is called once per frame
@@ -27,6 +27,7 @@ public class GUIScript : MonoBehaviour {
 
 	}
 
+	//Create a new level
 	void Setup (int level) {
 		squares = new GameObject[level, level];
 		deltaSize = gameController.gameSize / level;	//width of each square
@@ -36,7 +37,7 @@ public class GUIScript : MonoBehaviour {
 			for (int j = 0; j < level; j++) {
 				//locate the position of the square
 				pos = bottomLeft + new Vector3(deltaSize / 2 + j * deltaSize, deltaSize / 2 + i * deltaSize, 0);
-				pos.z = -2;
+				pos.z = -2;	//bring to the foreground
 
 				//create the square and change colour
 				curObject = (GameObject)Instantiate(piece, pos , Quaternion.identity);
@@ -51,10 +52,25 @@ public class GUIScript : MonoBehaviour {
 		}
 	}
 
+	//Update the colour of the square
 	public void UpdateSquare(int x, int y) {
 		if (gameController.getValues()[x,y])
 			squares [x, y].renderer.material.color = gameController.colorOn;
 		else
 			squares [x, y].renderer.material.color = gameController.colorOff;
+	}
+
+	//Change the level
+	public void ChangeBoard(int newLevel) {
+		//delete old board
+		for (int i = 0; i < level; i++) {
+			for (int j = 0; j < level; j++) {
+				Destroy(squares[j,i]);
+			}
+		}
+
+		//create new board
+		level = newLevel;
+		Setup (newLevel);
 	}
 }
