@@ -39,6 +39,8 @@ public class GUIScript : MonoBehaviour {
 				curObject = (GameObject)Instantiate(piece, pos , Quaternion.identity);
 				curObject.renderer.material.color = gameController.colorOff;
 				curObject.transform.localScale += new Vector3(deltaSize - gameController.spacing, deltaSize - gameController.spacing, 0);
+				curObject.transform.position += new Vector3(0, + gameController.spacing / 16, 0);	// adjust to origin
+				squares[j,i] = curObject;
 			}
 		}
 	}
