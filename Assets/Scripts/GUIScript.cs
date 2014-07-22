@@ -9,6 +9,10 @@ public class GUIScript : MonoBehaviour {
 	private Vector3 bottomLeft;
 	private GameObject piece;
 	private int level;
+	private float height, width;	
+
+	private Rect posLevelText;
+	public GUIStyle style;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +22,8 @@ public class GUIScript : MonoBehaviour {
 		size = gameController.gameSize;
 		bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
 		piece = GameObject.Find ("Piece");
+		height = Screen.height / 324.0f;
+		width = Screen.width / 576.0f;
 
 		Setup(level);
 	}
@@ -72,5 +78,10 @@ public class GUIScript : MonoBehaviour {
 		//create new board
 		level = newLevel;
 		Setup (newLevel);
+	}
+
+	void OnGUI() {
+		posLevelText = new Rect (253.89f * width, 32.1f * height, 0, 0);
+		GUI.Label (posLevelText, "Level: " + level.ToString(), style);
 	}
 }
