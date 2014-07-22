@@ -6,7 +6,7 @@ public class GUIScript : MonoBehaviour {
 	private GameController gameController;
 	private GameObject[,] squares;
 	private float deltaSize, size;
-	private Vector3 topLeft;
+	private Vector3 bottomLeft;
 	private GameObject piece;
 	private int startLevel; //DEBUG
 
@@ -16,7 +16,7 @@ public class GUIScript : MonoBehaviour {
 		gameController = transform.parent.GetComponent<GameController>();
 		startLevel = gameController.startLevel;
 		size = gameController.gameSize;
-		topLeft = gameController.transform.position + new Vector3 (-size / 2, size / 2, 0);
+		bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
 		piece = GameObject.Find ("Piece");
 
 		Setup(startLevel);
@@ -35,7 +35,7 @@ public class GUIScript : MonoBehaviour {
 		for (int i = 0; i < level; i++) {
 			for (int j = 0; j < level; j++) {
 				//locate the position of the square
-				pos = topLeft + new Vector3(deltaSize / 2 + j * deltaSize, -deltaSize / 2 - i * deltaSize, 0);
+				pos = bottomLeft + new Vector3(deltaSize / 2 + j * deltaSize, deltaSize / 2 + i * deltaSize, 0);
 				pos.z = -2;
 
 				//create the square and change colour
