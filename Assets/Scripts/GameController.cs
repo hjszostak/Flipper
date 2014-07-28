@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
 
 	private GUIScript guiScript;
 
+	public int numClicks;
 	public int level;
 	private bool[,] values;
 
@@ -17,7 +18,8 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		gameBackground = GameObject.Find ("Game Background");
 
-		level = startLevel;	//DEBUG
+		level = startLevel; // DEBUG
+		numClicks = 0;
 
 		piece = GameObject.Find ("Piece");
 		guiController = GameObject.Find ("GUI Controller");
@@ -63,6 +65,8 @@ public class GameController : MonoBehaviour {
 			values[x,y+1] = !values[x,y+1];
 			guiScript.UpdateSquare(x,y+1);
 		}
+
+		numClicks++;
 
 		if (isComplete()) {
 			newLevel();
