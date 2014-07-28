@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
 
 	private GUIScript guiScript;
 
-	public int numClicks;
+	private int numClicks;
 	public int level;
 	private bool[,] values;
 
@@ -79,6 +79,10 @@ public class GameController : MonoBehaviour {
 
 	public bool[,] getValues() {
 		return values;
+	}
+
+	public int getNumClicks() {
+		return numClicks;
 	}
 
 	//checks to see if the game is complete

@@ -12,6 +12,7 @@ public class GUIScript : MonoBehaviour {
 	private float height, width;	
 
 	private Rect posLevelText;
+	private Rect posClickText;
 	public GUIStyle style;
 
 	// Use this for initialization
@@ -20,11 +21,12 @@ public class GUIScript : MonoBehaviour {
 		gameController = transform.parent.GetComponent<GameController>();
 		level = gameController.startLevel;
 		size = gameController.gameSize;
-		bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
+		bottomLeft = gameController.gameBackground.transform.position - new Vector3 (size / 2, size / 2, 0);
 		piece = GameObject.Find ("Piece");
 		height = Screen.height / 324.0f;
 		width = Screen.width / 576.0f;
 		posLevelText = new Rect (288f * width, 32.1f * height, 0, 0);
+		posClickText = new Rect (490.82f * width, 286.31f * height, 0, 0);
 
 		Setup(level);
 	}
@@ -52,7 +54,6 @@ public class GUIScript : MonoBehaviour {
 
 				//resize and move square to show spacing
 				curObject.transform.localScale = new Vector3(deltaSize - gameController.spacing / level, deltaSize - gameController.spacing / level, 0);
-				curObject.transform.position += new Vector3(0, + gameController.spacing / (level * 16), 0);	// adjust to origin
 
 				squares[j,i] = curObject;	//store the square in the 2d array
 			}
@@ -83,5 +84,6 @@ public class GUIScript : MonoBehaviour {
 
 	void OnGUI() {
 		GUI.Label (posLevelText, "Level: " + level.ToString(), style);
+		GUI.Label (posClickText, "Clicks: " + gameController.getNumClicks().ToString(), style);
 	}
 }
