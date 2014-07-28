@@ -24,6 +24,7 @@ public class GUIScript : MonoBehaviour {
 		piece = GameObject.Find ("Piece");
 		height = Screen.height / 324.0f;
 		width = Screen.width / 576.0f;
+		posLevelText = new Rect (288f * width, 32.1f * height, 0, 0);
 
 		Setup(level);
 	}
@@ -50,8 +51,8 @@ public class GUIScript : MonoBehaviour {
 				curObject.renderer.material.color = gameController.colorOff;
 
 				//resize and move square to show spacing
-				curObject.transform.localScale += new Vector3(deltaSize - gameController.spacing, deltaSize - gameController.spacing, 0);
-				curObject.transform.position += new Vector3(0, + gameController.spacing / 16, 0);	// adjust to origin
+				curObject.transform.localScale = new Vector3(deltaSize - gameController.spacing / level, deltaSize - gameController.spacing / level, 0);
+				curObject.transform.position += new Vector3(0, + gameController.spacing / (level * 16), 0);	// adjust to origin
 
 				squares[j,i] = curObject;	//store the square in the 2d array
 			}
@@ -81,7 +82,6 @@ public class GUIScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		posLevelText = new Rect (253.89f * width, 32.1f * height, 0, 0);
 		GUI.Label (posLevelText, "Level: " + level.ToString(), style);
 	}
 }
