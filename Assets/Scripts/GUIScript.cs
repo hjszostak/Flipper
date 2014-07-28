@@ -6,11 +6,12 @@ public class GUIScript : MonoBehaviour {
 	private GameController gameController;
 	private GameObject[,] squares;
 	private float deltaSize, size;
-	private Vector3 bottomLeft;
+	private Vector3 bottomLeft;	//bottom left of the game background
 	private GameObject piece;
 	private int level;
-	private float height, width;	
+	private float height, width;
 
+	//Positions and styles for text
 	private Rect posLevelText;
 	private Rect posClickText;
 	public GUIStyle style;
@@ -25,6 +26,7 @@ public class GUIScript : MonoBehaviour {
 		piece = GameObject.Find ("Piece");
 		height = Screen.height / 324.0f;
 		width = Screen.width / 576.0f;
+
 		posLevelText = new Rect (288f * width, 32.1f * height, 0, 0);
 		posClickText = new Rect (490.82f * width, 286.31f * height, 0, 0);
 

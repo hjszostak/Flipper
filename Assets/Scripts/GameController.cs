@@ -18,23 +18,19 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		gameBackground = GameObject.Find ("Game Background");
 
-		level = startLevel; // DEBUG
-		numClicks = 0;
-
 		piece = GameObject.Find ("Piece");
 		guiController = GameObject.Find ("GUI Controller");
 		guiScript = guiController.GetComponent<GUIScript> ();
 
+		level = startLevel; // DEBUG
+		numClicks = 0;
+
 		values = new bool[level,level];
 
+		//set colours and resize game background
 		Camera.main.backgroundColor = backgroundColor;
 		gameBackground.renderer.material.color = backgroundSquare;
 		gameBackground.transform.localScale = new Vector3 (gameSize, gameSize, 1);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	public void buttonClick(int x, int y) {
