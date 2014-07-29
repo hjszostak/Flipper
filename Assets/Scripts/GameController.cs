@@ -5,7 +5,7 @@ public class GameController : MonoBehaviour {
 
 	public Color backgroundColor, colorOn, colorOff, backgroundSquare;
 	public float gameSize, spacing;
-	public GameObject gameBackground, piece, guiController;
+	public GameObject gameBackground, piece, guiController, resetButton;
 	public int startLevel;
 
 	private GUIScript guiScript;
@@ -17,9 +17,9 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameBackground = GameObject.Find ("Game Background");
-
 		piece = GameObject.Find ("Piece");
 		guiController = GameObject.Find ("GUI Controller");
+		resetButton = GameObject.Find ("Reset Button");
 		guiScript = guiController.GetComponent<GUIScript> ();
 
 		level = startLevel; // DEBUG
@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour {
 		//set colours and resize game background
 		Camera.main.backgroundColor = backgroundColor;
 		gameBackground.renderer.material.color = backgroundSquare;
+		resetButton.renderer.material.color = backgroundSquare;
 		gameBackground.transform.localScale = new Vector3 (gameSize, gameSize, 1);
 	}
 
@@ -97,5 +98,12 @@ public class GameController : MonoBehaviour {
 		level++;
 		values = new bool[level, level];
 		guiScript.ChangeBoard (level);
+	}
+
+	public void reset() {
+		level = startLevel;
+		values = new bool[level,level];
+		guiScript.ChangeBoard(level);
+		numClicks = 0;
 	}
 }

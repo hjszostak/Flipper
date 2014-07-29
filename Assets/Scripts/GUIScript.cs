@@ -14,6 +14,7 @@ public class GUIScript : MonoBehaviour {
 	//Positions and styles for text
 	private Rect posLevelText;
 	private Rect posClickText;
+	private Rect posResetButtonText;
 	public GUIStyle style;
 
 	// Use this for initialization
@@ -29,6 +30,9 @@ public class GUIScript : MonoBehaviour {
 
 		posLevelText = new Rect (288f * width, 32.1f * height, 0, 0);
 		posClickText = new Rect (490.82f * width, 286.31f * height, 0, 0);
+		Vector3 tempPosition = gameController.resetButton.transform.position;
+		tempPosition = Camera.main.WorldToScreenPoint (tempPosition);
+		posResetButtonText = new Rect (tempPosition.x, Screen.height - tempPosition.y, 0, 0);
 
 		Setup(level);
 	}
@@ -87,5 +91,6 @@ public class GUIScript : MonoBehaviour {
 	void OnGUI() {
 		GUI.Label (posLevelText, "Level: " + level.ToString(), style);
 		GUI.Label (posClickText, "Clicks: " + gameController.getNumClicks().ToString(), style);
+		GUI.Label (posResetButtonText, "RESET", style);
 	}
 }

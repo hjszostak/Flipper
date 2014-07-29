@@ -16,11 +16,16 @@ public class MouseHandler : MonoBehaviour {
 
 	void OnMouseDown() {
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		float size = gameController.gameSize;	//width of the game board
+		if (gameObject == gameController.gameBackground) {
+			float size = gameController.gameSize;	//width of the game board
 
-		Vector3 bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
-		mousePosition -= bottomLeft;	//relative position to corner
-		mousePosition *= gameController.getLevel() / size;	//find what square the mouse is in
-		gameController.buttonClick(Mathf.FloorToInt(mousePosition.x), Mathf.FloorToInt(mousePosition.y));
+			Vector3 bottomLeft = gameController.transform.position - new Vector3 (size / 2, size / 2, 0);
+			mousePosition -= bottomLeft;	//relative position to corner
+			mousePosition *= gameController.getLevel() / size;	//find what square the mouse is in
+			gameController.buttonClick(Mathf.FloorToInt(mousePosition.x), Mathf.FloorToInt(mousePosition.y));
+		}
+		else if (gameObject == gameController.resetButton) {
+			gameController.reset ();
+		}
 	}
 }
