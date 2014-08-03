@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public Color backgroundColor, colorOn, colorOff, backgroundSquare;
+	public Color backgroundColor, backgroundSquare;
 	public float gameSize, spacing;
 	public GameObject gameBackground, piece, guiController, resetButton;
 	public int startLevel;

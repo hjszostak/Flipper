@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GUIScript : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class GUIScript : MonoBehaviour {
 	private Rect posClickText;
 	private Rect posResetButtonText;
 	public GUIStyle style;
+	public Texture2D[] textures;
 
 	// Use this for initialization
 	void Start () {
@@ -36,11 +38,6 @@ public class GUIScript : MonoBehaviour {
 
 		Setup(level);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	//Create a new level
 	void Setup (int level) {
@@ -56,7 +53,7 @@ public class GUIScript : MonoBehaviour {
 
 				//create the square and change colour
 				curObject = (GameObject)Instantiate(piece, pos , Quaternion.identity);
-				curObject.renderer.material.color = gameController.colorOff;
+				curObject.renderer.material.mainTexture = textures[0];
 
 				//resize and move square to show spacing
 				curObject.transform.localScale = new Vector3(deltaSize - gameController.spacing / level, deltaSize - gameController.spacing / level, 0);
@@ -68,10 +65,8 @@ public class GUIScript : MonoBehaviour {
 
 	//Update the colour of the square
 	public void UpdateSquare(int x, int y) {
-		if (gameController.getValues()[x,y])
-			squares [x, y].renderer.material.color = gameController.colorOn;
-		else
-			squares [x, y].renderer.material.color = gameController.colorOff;
+		int value = Convert.ToInt32(gameController.getValues () [x, y]);
+		squares[x,y].renderer.material.mainTexture = textures[value];
 	}
 
 	//Change the level
