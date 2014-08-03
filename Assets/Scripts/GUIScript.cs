@@ -85,7 +85,7 @@ public class GUIScript : MonoBehaviour {
 
 	void OnGUI() {
 		GUI.Label (posLevelText, "Level: " + level.ToString(), style);
-		GUI.Label (posClickText, "Clicks: " + gameController.getNumClicks().ToString(), style);
+		GUI.Label (posClickText, "Flips: " + gameController.getNumClicks().ToString(), style);
 		GUI.Label (posResetButtonText, "RESET", style);
 	}
 }
